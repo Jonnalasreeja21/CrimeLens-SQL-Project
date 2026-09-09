@@ -179,6 +179,7 @@ on ca.officer_id = o.officer_id;
 select * from crime_report;
 
 -- Stored Procedures
+
 delimiter //
 create procedure GetCrimesByLocation(in loc varchar(100))
 begin
@@ -232,6 +233,7 @@ begin
     values (new.crime_id, 'INSERT');
 end //
 delimiter ;
+select  * from crime_audit;
 
 -- Transactions
 start transaction;
@@ -244,6 +246,9 @@ insert into evidence
 values
 (LAST_INSERT_ID(), 'Digital', 'Mobile device', '2026-04-10');
 commit
+
+select * from crimes
+where crime_type = 'Cyber Crime';
 
 -- Index on location
 create index idx_crime_location
